@@ -1,0 +1,44 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ControlTemplate x:Key="WaitControlTemplate">
+        <Border BorderThickness="1"
+                BorderBrush="{x:Static SystemColors.ControlDarkDarkBrush}">
+            <DockPanel HorizontalAlignment="Center" 
+                       VerticalAlignment="Center">
+                <Image Width="16" 
+                       Height="16" 
+                       Margin="5,0"
+                       SnapsToDevicePixels="True"
+                       Source="loading_16.png">
+                    <Image.RenderTransform>
+                        <RotateTransform CenterX="8" CenterY="8" />
+                    </Image.RenderTransform>
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Image.Loaded">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Image.RenderTransform).(RotateTransform.Angle)"
+                                                                   RepeatBehavior="Forever"
+                                                                   SpeedRatio="1.5">
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.125" Value="45.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.250" Value="90.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.375" Value="135.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.500" Value="180.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.625" Value="225.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.750" Value="270.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:0.875" Value="315.0" />
+                                        <DiscreteDoubleKeyFrame KeyTime="0:0:1.000" Value="360.0" />
+                                    </DoubleAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                </Image>
+                <StackPanel >
+                    <TextBlock HorizontalAlignment="Center"                 Text="Подождите, пока загрузятся рабочие элементы..." />
+                    <TextBlock HorizontalAlignment="Center" FontSize="11"  Text="(Если ожидание превышает 15 секунд, то нажмите F5)" />
+                </StackPanel>
+            </DockPanel>
+        </Border>
+    </ControlTemplate>
+</ResourceDictionary>

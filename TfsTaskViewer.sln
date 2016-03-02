@@ -1,0 +1,75 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TfsTaskViewer", "TfsTaskViewer\TfsTaskViewer.csproj", "{893B4276-CB4E-4A33-AB56-EC5E1DD5115F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StatTaskViewer", "StatTaskViewer\StatTaskViewer.csproj", "{BE59B538-F35C-4AF4-A8C0-EEAEED5A29EE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{02D806B3-7F14-48A8-ADBC-96BCC972CC59}"
+	ProjectSection(SolutionItems) = preProject
+		Dlls\Microsoft.QualityTools.Testing.Fakes.dll = Dlls\Microsoft.QualityTools.Testing.Fakes.dll
+		Dlls\Microsoft.TeamFoundation.Build.Activities.dll = Dlls\Microsoft.TeamFoundation.Build.Activities.dll
+		Dlls\Microsoft.TeamFoundation.Build.Client.dll = Dlls\Microsoft.TeamFoundation.Build.Client.dll
+		Dlls\Microsoft.TeamFoundation.Build.Common.dll = Dlls\Microsoft.TeamFoundation.Build.Common.dll
+		Dlls\Microsoft.TeamFoundation.Build.Workflow.dll = Dlls\Microsoft.TeamFoundation.Build.Workflow.dll
+		Dlls\Microsoft.TeamFoundation.Client.dll = Dlls\Microsoft.TeamFoundation.Client.dll
+		Dlls\Microsoft.TeamFoundation.Common.dll = Dlls\Microsoft.TeamFoundation.Common.dll
+		Dlls\Microsoft.TeamFoundation.Deployment.Workflow.dll = Dlls\Microsoft.TeamFoundation.Deployment.Workflow.dll
+		Dlls\Microsoft.TeamFoundation.Diff.dll = Dlls\Microsoft.TeamFoundation.Diff.dll
+		Dlls\Microsoft.TeamFoundation.Discussion.Client.dll = Dlls\Microsoft.TeamFoundation.Discussion.Client.dll
+		Dlls\Microsoft.TeamFoundation.TestManagement.Client.dll = Dlls\Microsoft.TeamFoundation.TestManagement.Client.dll
+		Dlls\Microsoft.TeamFoundation.TestManagement.Common.dll = Dlls\Microsoft.TeamFoundation.TestManagement.Common.dll
+		Dlls\Microsoft.TeamFoundation.VersionControl.Client.dll = Dlls\Microsoft.TeamFoundation.VersionControl.Client.dll
+		Dlls\Microsoft.TeamFoundation.VersionControl.Common.dll = Dlls\Microsoft.TeamFoundation.VersionControl.Common.dll
+		Dlls\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll = Dlls\Microsoft.TeamFoundation.VersionControl.Common.Integration.dll
+		Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll = Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.DataStoreLoader.dll
+		Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.dll = Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.dll
+		Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll = Dlls\Microsoft.TeamFoundation.WorkItemTracking.Client.QueryLanguage.dll
+		Dlls\Microsoft.TeamFoundation.WorkItemTracking.Common.dll = Dlls\Microsoft.TeamFoundation.WorkItemTracking.Common.dll
+		Dlls\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll = Dlls\Microsoft.TeamFoundation.WorkItemTracking.Proxy.dll
+		Dlls\Microsoft.VisualStudio.DebuggerVisualizers.dll = Dlls\Microsoft.VisualStudio.DebuggerVisualizers.dll
+		Dlls\Microsoft.VisualStudio.QualityTools.Common.dll = Dlls\Microsoft.VisualStudio.QualityTools.Common.dll
+		Dlls\Microsoft.VisualStudio.QualityTools.ExecutionCommon.dll = Dlls\Microsoft.VisualStudio.QualityTools.ExecutionCommon.dll
+		Dlls\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll = Dlls\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+		Dlls\Microsoft.VisualStudio.Services.Client.dll = Dlls\Microsoft.VisualStudio.Services.Client.dll
+		Dlls\Microsoft.VisualStudio.Services.Common.dll = Dlls\Microsoft.VisualStudio.Services.Common.dll
+		Dlls\Microsoft.VisualStudio.Services.WebApi.dll = Dlls\Microsoft.VisualStudio.Services.WebApi.dll
+		Dlls\Microsoft.WITDataStore.dll = Dlls\Microsoft.WITDataStore.dll
+		Dlls\Newtonsoft.Json.dll = Dlls\Newtonsoft.Json.dll
+		Dlls\TfsApi.dll = Dlls\TfsApi.dll
+		Dlls\U2UConsult.RichHtmlTextBlock.dll = Dlls\U2UConsult.RichHtmlTextBlock.dll
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://tfs:8080/tfs/labtasks
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = StatTaskViewer\\StatTaskViewer.csproj
+		SccProjectName1 = StatTaskViewer
+		SccLocalPath1 = StatTaskViewer
+		SccProjectUniqueName2 = TfsTaskViewer\\TfsTaskViewer.csproj
+		SccProjectName2 = TfsTaskViewer
+		SccLocalPath2 = TfsTaskViewer
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{893B4276-CB4E-4A33-AB56-EC5E1DD5115F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{893B4276-CB4E-4A33-AB56-EC5E1DD5115F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{893B4276-CB4E-4A33-AB56-EC5E1DD5115F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{893B4276-CB4E-4A33-AB56-EC5E1DD5115F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE59B538-F35C-4AF4-A8C0-EEAEED5A29EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE59B538-F35C-4AF4-A8C0-EEAEED5A29EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE59B538-F35C-4AF4-A8C0-EEAEED5A29EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE59B538-F35C-4AF4-A8C0-EEAEED5A29EE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

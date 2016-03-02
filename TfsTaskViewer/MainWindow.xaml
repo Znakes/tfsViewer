@@ -1,0 +1,132 @@
+﻿<Window x:Class="TfsTaskViewer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Icon="icon.ico"
+        xmlns:converters="clr-namespace:TfsTaskViewer.Converters"
+        Title="Task viewer" Loaded="MainWindow_OnLoaded" Height="600" Width="1000" KeyDown="Window_KeyDown">
+    <Window.Resources>
+        <DataTemplate x:Key="ExpandDetails">
+            <ToggleButton Name="ShowDetails"
+                          Margin="4">
+                <ToggleButton.IsChecked>
+                    <Binding RelativeSource="{RelativeSource AncestorType=DataGridRow}" Path="DetailsVisibility"
+                             Mode="TwoWay">
+                        <Binding.Converter>
+                            <converters:VisbilityToBooleanConverter />
+                        </Binding.Converter>
+                    </Binding>
+                </ToggleButton.IsChecked>
+            </ToggleButton>
+        </DataTemplate>
+
+        <DataTemplate x:Key="GoToBrowser">
+            <Button Content="=>" Command="{Binding GoToUrl}" CommandParameter="{Binding TaskUrl}" />
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="40" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu  Grid.ColumnSpan="3" >
+            <Menu.IsEnabled>
+                <Binding Path="Collections">
+                    <Binding.Converter>
+                        <converters:CheckForNull />
+                    </Binding.Converter>
+                </Binding>
+                </Menu.IsEnabled>
+            <MenuItem Header="Файл">
+                <MenuItem  Header="Подключиться/Обновить [_F5]" Click="OnConnect" />
+                <MenuItem  Header="Экспорт" >
+                    <MenuItem  Header="Выполнено за период"  Click="OnPeriodExporting" />
+                </MenuItem>
+                <MenuItem  Header="Выйти (инструкция)"  Click="OnLogout" />
+            </MenuItem>
+            <MenuItem Header="Вид">
+                <MenuItem  Header="По коллекциям" Click="OnByCollections"  />
+                <MenuItem  Header="По проектам" Click="OnByProjects"  />
+                <MenuItem  Header="По всем проектам" Click="OnByAllProjects"  />
+            </MenuItem>
+        </Menu>
+        
+        <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
+            <StatusBarItem Content="{Binding CurrentUser}"></StatusBarItem>
+            <StatusBarItem Content="{Binding CurrentState}"></StatusBarItem>
+        </StatusBar>
+        
+        <GridSplitter HorizontalAlignment="Center" ShowsPreview="False"  Background="Wheat" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Panel.ZIndex="4"  Width="6"></GridSplitter>
+        
+        <ListBox  IsSynchronizedWithCurrentItem="True"  ItemsSource="{Binding Collections}" SelectionMode="Single"  Name="ListBox" 
+                 Grid.Row="1" Grid.Column="0">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="2" LastChildFill="True" >
+                        <TextBlock DockPanel.Dock="Right" Text="{Binding WorkItems.Count}" />
+                        <TextBlock Text="{Binding CollectionName}" FontWeight="Bold" Margin="0,0,10,0"/>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        
+        <ContentControl  Grid.Row="1" Grid.Column="2" Content="{Binding Collections}"   >
+            <ContentControl.ContentTemplate>
+                <DataTemplate>
+                    <DataGrid 
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        Name="DataGrid"
+                  SelectionMode="Single"
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="True"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding WorkItems}" >
+                        
+                        <DataGrid.Style>
+                            <Style TargetType="{x:Type DataGrid}">
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsSource" Value="{x:Null}">
+                                        <Setter Property="Template" Value="{StaticResource WaitControlTemplate}" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </DataGrid.Style>
+                        <DataGrid.Columns>
+                            <DataGridTemplateColumn Header="" CellTemplate="{StaticResource ExpandDetails}" Width="30" />
+                            <DataGridTemplateColumn Header="Перейти" CellTemplate="{StaticResource GoToBrowser}"  Width="30" />
+                            <DataGridTextColumn Header="ID" Binding="{Binding WorkItem.Id}" />
+                            <DataGridTextColumn Header="Проект" Binding="{Binding WorkItem.Project.Name}" />
+                            <DataGridTextColumn Header="Задача" Width="*" Binding="{Binding WorkItem.Title}" />
+                            <DataGridTextColumn Header="Статус" Binding="{Binding WorkItem.State}" />
+                            <DataGridTextColumn Header="Сложность" Binding="{Binding Effort}" />
+                            <DataGridTextColumn Header="Время выполнения" Binding="{Binding RemainingWork}" />
+                        </DataGrid.Columns>
+                        <DataGrid.RowDetailsTemplate>
+                            <DataTemplate >
+
+                                <Border BorderThickness="2,2,8,2" 
+                                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type ItemsPresenter}}, Path=ActualWidth}"
+                                        HorizontalAlignment="Left" >
+                                    <TextBlock  Text="{Binding WorkItem.Description}" TextWrapping="Wrap"/>
+                                </Border>
+                                <!--<TextBox Padding="0" Margin="0" IsReadOnly="True"  Width="{Binding ElementName=DataGrid, Path=ActualWidth}" TextWrapping="WrapWithOverflow" Text="{Binding WorkItem.Description}"></TextBox>-->
+                                <!--<controls:RichTextBox Style="{StaticResource HtmlTextBlockStyle}" Text="{Binding Description}" ></controls:RichTextBox>-->
+                                <!--<RichTextBox 
+                                converters:HtmlTextBoxProperties.HtmlText="{Binding Path=Description}" Margin="5" />-->
+
+                            </DataTemplate>
+                        </DataGrid.RowDetailsTemplate>
+                    </DataGrid>
+                </DataTemplate>
+            </ContentControl.ContentTemplate>
+        </ContentControl>
+    </Grid>
+</Window>

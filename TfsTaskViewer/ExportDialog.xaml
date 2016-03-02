@@ -1,0 +1,14 @@
+﻿<Window x:Class="TfsTaskViewer.ExportDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TfsTaskViewer"
+        mc:Ignorable="d" Loaded="ExportDialog_OnLoaded"
+        Title="Отчет за период" Height="120" ResizeMode="NoResize" Width="300">
+    <StackPanel VerticalAlignment="Center">
+        <DatePicker Name="StartDate" Text="Начало периода"></DatePicker>
+        <DatePicker Name="FinishDate" Text="Конец периода"></DatePicker>
+        <Button Click="Button_Click">Экспорт</Button>
+    </StackPanel>
+</Window>
