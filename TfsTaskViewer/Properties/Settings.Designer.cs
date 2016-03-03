@@ -22,5 +22,17 @@ namespace TfsTaskViewer.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\lab3030\\Shared\\ToIgor\\TFSViewer\\TfsTaskViewer.exe")]
+        public string UpdatePath {
+            get {
+                return ((string)(this["UpdatePath"]));
+            }
+            set {
+                this["UpdatePath"] = value;
+            }
+        }
     }
 }

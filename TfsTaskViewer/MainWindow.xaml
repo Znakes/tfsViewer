@@ -42,18 +42,25 @@
                     </Binding.Converter>
                 </Binding>
                 </Menu.IsEnabled>
-            <MenuItem Header="Файл">
-                <MenuItem  Header="Подключиться/Обновить [_F5]" Click="OnConnect" />
-                <MenuItem  Header="Экспорт" >
-                    <MenuItem  Header="Выполнено за период"  Click="OnPeriodExporting" />
+            <MenuItem Header="Файл" >
+                <MenuItem Header="Connection" >
+                    <MenuItem  Header="Refresh" Click="OnConnect" />
+                    <MenuItem Header="Check For Updates" Click="MenuItem_OnClick" />
                 </MenuItem>
-                <MenuItem  Header="Выйти (инструкция)"  Click="OnLogout" />
+                <MenuItem  Header="Export" >
+                    <MenuItem  Header="Done in period"  Click="OnPeriodExporting" />
+                </MenuItem>
+                <MenuItem  Header="Exit (manual)"  Click="OnLogout" />
             </MenuItem>
-            <MenuItem Header="Вид">
-                <MenuItem  Header="По коллекциям" Click="OnByCollections"  />
-                <MenuItem  Header="По проектам" Click="OnByProjects"  />
-                <MenuItem  Header="По всем проектам" Click="OnByAllProjects"  />
+            <MenuItem Header="View">
+                <MenuItem  Header="By collections" Click="OnByCollections"  />
+                <MenuItem  Header="By projects" Click="OnByProjects"  />
+                <MenuItem  Header="All projects" Click="OnByAllProjects"  />
             </MenuItem>
+
+            <MenuItem Header="About" Click="MenuItem_About" />
+            
+
         </Menu>
         
         <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">

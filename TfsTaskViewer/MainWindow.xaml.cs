@@ -6,6 +6,7 @@ using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,6 +19,7 @@ using Microsoft.TeamFoundation.WorkItemTracking.Client;
 using TfsApi.Administration;
 using TfsApi.Queries;
 using TfsTaskViewer.Annotations;
+using TfsTaskViewer.Properties;
 
 namespace TfsTaskViewer
 {
@@ -364,9 +366,105 @@ namespace TfsTaskViewer
         /// <param name="e"></param>
         private void OnPeriodExporting(object sender, RoutedEventArgs e)
         {
-            var dlg = new ExportDialog() {Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner};
+            try
+            {
+                var dlg = new ExportDialog() { Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner };
+                dlg.ShowDialog();
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+            
 
-            dlg.ShowDialog();
+            
+        }
+
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var pathToNew = Settings.Default.UpdatePath;
+
+            if (!File.Exists(pathToNew))
+            {
+                MessageBox.Show("Can't find new version. Check path to file in settings.");
+            }
+            
+            string assemblyVersion = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            var versionToUpdate = AssemblyName.GetAssemblyName(pathToNew).Version;
+            var versionCurrent = new Version(assemblyVersion);
+
+            Console.WriteLine(versionToUpdate);
+
+            if (versionToUpdate.CompareTo(versionCurrent) <= 0)
+            {
+                MessageBox.Show("No updates, sorry.");
+            }
+            else
+            {
+                if (
+                    MessageBox.Show(
+                        $"New version of TfsViewer ({versionToUpdate}) is available. Current: {assemblyVersion}.\nDo you want to update?",
+                        "New version!", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                {
+                    var currentLocation = System.Reflection.Assembly.GetExecutingAssembly().Location;
+
+                    try
+                    {
+                        File.Copy(pathToNew, currentLocation + "_",true);
+                    }
+                    catch (Exception ex)
+                    {
+                        
+                        throw;
+                    }
+                    
+
+                    var query = $"{Directory.GetCurrentDirectory()}\\update.bat";
+
+                    //ExecuteCommand(query);
+
+                    System.Diagnostics.Process.Start(query);
+
+                }
+            }
+            
+        }
+
+        void ExecuteCommand(string command)
+        {
+            int exitCode;
+            ProcessStartInfo processInfo;
+            Process process;
+
+            processInfo = new ProcessStartInfo("cmd.exe", "/c " + command);
+            processInfo.CreateNoWindow = true;
+            processInfo.UseShellExecute = false;
+            processInfo.WorkingDirectory = Directory.GetCurrentDirectory();
+            // *** Redirect the output ***
+            processInfo.RedirectStandardError = true;
+            processInfo.RedirectStandardOutput = true;
+
+            process = Process.Start(processInfo);
+            process.WaitForExit();
+
+            // *** Read the streams ***
+            // Warning: This approach can lead to deadlocks, see Edit #2
+            string output = process.StandardOutput.ReadToEnd();
+            string error = process.StandardError.ReadToEnd();
+
+            exitCode = process.ExitCode;
+
+            Console.WriteLine("output>>" + (String.IsNullOrEmpty(output) ? "(none)" : output));
+            Console.WriteLine("error>>" + (String.IsNullOrEmpty(error) ? "(none)" : error));
+            Console.WriteLine("ExitCode: " + exitCode.ToString(), "ExecuteCommand");
+            process.Close();
+        }
+
+        private void MenuItem_About(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(
+                $"Dev.: https://github.com/Znakes/tfsViewer \nCurrent ver.:{Assembly.GetExecutingAssembly().GetName().Version}");
         }
     }
 
