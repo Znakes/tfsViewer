@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Icon="icon.ico"
         xmlns:converters="clr-namespace:TfsTaskViewer.Converters"
-        Title="Task viewer" Loaded="MainWindow_OnLoaded" Height="600" Width="1000" KeyDown="Window_KeyDown">
+        Title="Tfs task loader" Loaded="MainWindow_OnLoaded" Height="600" Width="1000" KeyDown="Window_KeyDown">
     <Window.Resources>
         <DataTemplate x:Key="ExpandDetails">
             <ToggleButton Name="ShowDetails"
@@ -42,15 +42,11 @@
                     </Binding.Converter>
                 </Binding>
                 </Menu.IsEnabled>
-            <MenuItem Header="Файл" >
-                <MenuItem Header="Connection" >
-                    <MenuItem  Header="Refresh" Click="OnConnect" />
-                    <MenuItem Header="Check For Updates" Click="MenuItem_OnClick" />
-                </MenuItem>
+            <MenuItem Header="File" >
+                <MenuItem  Header="Refresh" Click="OnConnect" />
                 <MenuItem  Header="Export" >
                     <MenuItem  Header="Done in period"  Click="OnPeriodExporting" />
                 </MenuItem>
-                <MenuItem  Header="Exit (manual)"  Click="OnLogout" />
             </MenuItem>
             <MenuItem Header="View">
                 <MenuItem  Header="By collections" Click="OnByCollections"  />
@@ -58,14 +54,17 @@
                 <MenuItem  Header="All projects" Click="OnByAllProjects"  />
             </MenuItem>
 
-            <MenuItem Header="About" Click="MenuItem_About" />
-            
+            <MenuItem Header="Help" >
+                <MenuItem Header="Check for updates" Click="MenuItem_OnClick" />
+                <MenuItem  Header="How to logout"  Click="OnLogout" />
+                <MenuItem Header="About" Click="MenuItem_About" />
+            </MenuItem>
 
         </Menu>
         
         <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
-            <StatusBarItem Content="{Binding CurrentUser}"></StatusBarItem>
-            <StatusBarItem Content="{Binding CurrentState}"></StatusBarItem>
+            <StatusBarItem  Content="{Binding CurrentState}" Margin="5,0"/>
+            <StatusBarItem HorizontalAlignment="Right" Content="{Binding CurrentUser}" Margin="5,0" />
         </StatusBar>
         
         <GridSplitter HorizontalAlignment="Center" ShowsPreview="False"  Background="Wheat" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Panel.ZIndex="4"  Width="6"></GridSplitter>

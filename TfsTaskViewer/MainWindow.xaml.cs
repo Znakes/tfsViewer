@@ -308,6 +308,12 @@ namespace TfsTaskViewer
 
         private async void OnConnect(object sender, RoutedEventArgs e)
         {
+            if (IsBusy)
+            {
+                MessageBox.Show("Wait while loading tasks", "Patience");
+                return;
+            }
+
             lock (waitTask)
             {
                 Collections.Clear();
@@ -422,9 +428,9 @@ namespace TfsTaskViewer
 
                     var query = $"{Directory.GetCurrentDirectory()}\\update.bat";
 
-                    //ExecuteCommand(query);
+                    ExecuteCommand(query);
 
-                    System.Diagnostics.Process.Start(query);
+                    //System.Diagnostics.Process.Start(query);
 
                 }
             }
@@ -464,7 +470,7 @@ namespace TfsTaskViewer
         private void MenuItem_About(object sender, RoutedEventArgs e)
         {
             MessageBox.Show(
-                $"Dev.: https://github.com/Znakes/tfsViewer \nCurrent ver.:{Assembly.GetExecutingAssembly().GetName().Version}");
+                $"Sources: https://github.com/Znakes/tfsViewer \nCurrent version: {Assembly.GetExecutingAssembly().GetName().Version}");
         }
     }
 
