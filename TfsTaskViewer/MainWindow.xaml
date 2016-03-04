@@ -59,8 +59,6 @@
                 <MenuItem  Header="How to logout"  Click="OnLogout" />
                 <MenuItem Header="About" Click="MenuItem_About" />
             </MenuItem>
-            
-            <MenuItem Header="Петушок"></MenuItem>
         </Menu>
         
         <StatusBar Grid.Row="2" Grid.ColumnSpan="3" Grid.Column="0">
