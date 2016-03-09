@@ -53,5 +53,5 @@ using System.Windows;
 // [assembly: AssemblyVersion("1.0.*")]
 // 1.0.2.0 - added updates
 // 1.0.3.0 - grammar
-[assembly: AssemblyVersion("1.0.3.0")]
+[assembly: AssemblyVersion("1.0.3.1")]
 [assembly: AssemblyFileVersion("1.0.1.2")]
