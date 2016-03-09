@@ -469,8 +469,7 @@ namespace TfsTaskViewer
 
         private void MenuItem_About(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(
-                $"Sources: https://github.com/Znakes/tfsViewer \nCurrent version: {Assembly.GetExecutingAssembly().GetName().Version}");
+            MessageBox.Show($"Sources: https://github.com/Znakes/tfsViewer \nCurrent version: {Assembly.GetExecutingAssembly().GetName().Version}");
         }
     }
 

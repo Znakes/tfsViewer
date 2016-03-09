@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Icon="icon.ico"
         xmlns:converters="clr-namespace:TfsTaskViewer.Converters"
-        Title="Tfs task loader" Loaded="MainWindow_OnLoaded" Height="600" Width="1000" KeyDown="Window_KeyDown">
+        Title="Tfs task viewer" Loaded="MainWindow_OnLoaded" Height="600" Width="1000" KeyDown="Window_KeyDown">
     <Window.Resources>
         <DataTemplate x:Key="ExpandDetails">
             <ToggleButton Name="ShowDetails"
@@ -55,8 +55,7 @@
             </MenuItem>
 
             <MenuItem Header="Help" >
-                <MenuItem Header="Check for updates" Click="MenuItem_OnClick" />
-                <MenuItem  Header="How to logout"  Click="OnLogout" />
+                <MenuItem  Header="How to logout.."  Click="OnLogout" />
                 <MenuItem Header="About" Click="MenuItem_About" />
             </MenuItem>
         </Menu>
