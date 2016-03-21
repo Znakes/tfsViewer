@@ -34,6 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dlls", "Dlls", "{02D806B3-7
 		Dlls\Microsoft.VisualStudio.Services.Client.dll = Dlls\Microsoft.VisualStudio.Services.Client.dll
 		Dlls\Microsoft.VisualStudio.Services.Common.dll = Dlls\Microsoft.VisualStudio.Services.Common.dll
 		Dlls\Microsoft.VisualStudio.Services.WebApi.dll = Dlls\Microsoft.VisualStudio.Services.WebApi.dll
+		Dlls\Microsoft.VisualStudio.TeamFoundation.SharePointReporting.dll = Dlls\Microsoft.VisualStudio.TeamFoundation.SharePointReporting.dll
 		Dlls\Microsoft.WITDataStore.dll = Dlls\Microsoft.WITDataStore.dll
 		Dlls\Newtonsoft.Json.dll = Dlls\Newtonsoft.Json.dll
 		Dlls\TfsApi.dll = Dlls\TfsApi.dll
